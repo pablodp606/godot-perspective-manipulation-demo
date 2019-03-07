@@ -1,0 +1,211 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://CameraControl.gd" type="Script" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://Block.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Environment" id=1]
+background_mode = 1
+background_color = Color( 0.582748, 0.707031, 0.689554, 1 )
+ambient_light_color = Color( 0.976562, 0.976562, 0.976562, 1 )
+ambient_light_energy = 0.25
+ssao_blur = 1
+adjustment_enabled = true
+adjustment_brightness = 1.13
+adjustment_contrast = 1.14
+
+[sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+render_priority = 1
+flags_unshaded = true
+params_diffuse_mode = 1
+
+[node name="Spatial" type="Spatial"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="CameraOrigin" type="Spatial" parent="."]
+script = ExtResource( 1 )
+
+[node name="CameraRotationY" type="Spatial" parent="CameraOrigin"]
+transform = Transform( 0.591632, 0, -0.806208, 0, 1, 0, 0.806208, 0, 0.591632, 0, 0, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="CameraOrigin/CameraRotationY"]
+transform = Transform( 0.623013, -0.733525, 0.271654, 0.321394, 0.55667, 0.766044, -0.713134, -0.389948, 0.582563, -17.7803, 1.70413, -4.40658 )
+light_color = Color( 0.945312, 0.841227, 0.620361, 1 )
+light_energy = 0.66
+
+[node name="CameraRotationX" type="Spatial" parent="CameraOrigin/CameraRotationY"]
+transform = Transform( 1, -1.49012e-08, 0, 0, 0.929257, 0.369435, -2.98023e-08, -0.369435, 0.929257, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="CameraOrigin/CameraRotationY/CameraRotationX"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.3665 )
+projection = 1
+size = 23.3214
+near = 0.1
+
+[node name="PlayerOrigin" type="Spatial" parent="."]
+script = ExtResource( 2 )
+
+[node name="Player" type="Spatial" parent="PlayerOrigin"]
+
+[node name="MeshInstance" type="MeshInstance" parent="PlayerOrigin/Player"]
+transform = Transform( 0.7, 0, 0, 0, -3.0598e-08, -0.7, 0, 0.7, -3.0598e-08, 0, 2.2308, 9.75113e-08 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="LevelOrigin" type="Spatial" parent="."]
+
+[node name="StartBlock" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+
+[node name="Block9" parent="LevelOrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+
+[node name="Block25" parent="LevelOrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, 0 )
+
+[node name="Block26" parent="LevelOrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -4, 0 )
+
+[node name="Block27" parent="LevelOrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -6, 0 )
+
+[node name="Block28" parent="LevelOrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -8, 0 )
+
+[node name="Block29" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -8, -2 )
+
+[node name="Block30" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -8, -4 )
+
+[node name="Block31" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -8, -6 )
+
+[node name="Block16" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2 )
+
+[node name="Block32" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
+
+[node name="Block17" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2 )
+
+[node name="Block18" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6 )
+
+[node name="Block19" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4 )
+
+[node name="Block20" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8 )
+
+[node name="Block10" parent="LevelOrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0 )
+
+[node name="Block11" parent="LevelOrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 0 )
+
+[node name="Block12" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, 0 )
+
+[node name="Block13" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6, 0 )
+
+[node name="Block14" parent="LevelOrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 6, 0 )
+
+[node name="Block15" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 6, 0 )
+
+[node name="Block33" parent="LevelOrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 4, 0 )
+
+[node name="Block34" parent="LevelOrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 0 )
+
+[node name="Block21" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 6, -2 )
+
+[node name="Block22" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 6, -4 )
+
+[node name="Block2" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+
+[node name="Block3" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+
+[node name="Block4" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0 )
+
+[node name="Block23" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2 )
+
+[node name="Block24" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4 )
+
+[node name="Block5" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -2 )
+
+[node name="Block6" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4 )
+
+[node name="Block7" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6 )
+
+[node name="Block8" parent="LevelOrigin" groups=[
+"Block",
+] instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -8 )
+
+
+[editable path="LevelOrigin/StartBlock"]
